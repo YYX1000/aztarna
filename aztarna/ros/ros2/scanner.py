@@ -2,6 +2,7 @@ import os
 from collections import namedtuple
 import pyshark
 import threading
+import time
 from typing import List
 
 try:
@@ -243,8 +244,15 @@ class ROS2Scanner(RobotAdapter):
         # when reproduced both in Linux and OS X. Essentially, calls to fetch nodes
         # topics and services deliver incomplete information.
         rclpy.init()
+        scanner_node = None
         try:
             scanner_node = rclpy.create_node(self.scanner_node_name)
+
+            # Give DDS discovery a moment to populate the graph
+            for _ in range(3):
+                rclpy.spin_once(scanner_node, timeout_sec=0.2)
+                time.sleep(0.05)
+
             found_nodes = self.scan_ros2_nodes(scanner_node)
             if found_nodes:
                 host = ROS2Host()
@@ -254,13 +262,17 @@ class ROS2Scanner(RobotAdapter):
                 host.services = self.scan_ros2_services(scanner_node)
                 if self.extended:
                     for node in found_nodes:
-                        self.get_node_topics(scanner_node, node)
-                        self.get_node_services(scanner_node, node)
+                        try:
+                            self.get_node_topics(scanner_node, node)
+                            self.get_node_services(scanner_node, node)
+                        except Exception as e:
+                            print(f'\t[!] Failed to query node {node.name}: {e}')
                 self.found_hosts.append(host)
-            rclpy.shutdown()
-
-        except:
-            raise Exception("Security plugins not supported in aztarna!")
+        finally:
+            try:
+                rclpy.shutdown()
+            except Exception:
+                pass
 
     def scan_pipe_main(self):
         raise NotImplementedError
@@ -497,7 +509,7 @@ class ROS2Scanner(RobotAdapter):
                 #   3. calls ros2cli ros2service and populates
 
                 # NOTE: scanning all the domains can take several minutes
-                t = threading.Thread(self.ros2cli_api(i))
+                t = threading.Thread(target=self.ros2cli_api, args=(i,))
                 threads.append(t)
                 t.start()
                 # self.print_results_daemon()
@@ -508,8 +520,10 @@ class ROS2Scanner(RobotAdapter):
                 #   3. calls rclpy scan_ros2_services and populates
 
                 # NOTE: scanning all the domains takes only a few seconds
-                t = threading.Thread(self.on_thread(i))
-                threads.append(t)
-                t.start()
+                # rclpy init/shutdown is not safe to run in parallel; keep sequential
+                self.on_thread(i)
+
+        for t in threads:
+            t.join()
 
         return self.found_hosts

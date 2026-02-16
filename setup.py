@@ -1,13 +1,10 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import sys
 
 from setuptools import setup
 
 setup(
     name='aztarna',
-    version='1.2.2',
+    version='2.0',
     packages=[
                 'aztarna',
                 'aztarna.ros',
@@ -17,20 +14,19 @@ setup(
                 'aztarna.ros.ros2',
                 'aztarna.industrialrouters',
               ],
-    url='https://www.aliasrobotics.com/research/aztarna.htm',
+    url='https://www.d2e.top',
     project_urls={
-        'Source Code': 'https://github.com/aliasrobotics/aztarna'
+        'Source Code': 'https://github.com/YYX1000/aztarna'
     },
     license='GPLv3',
     author='Alias Robotics',
-    author_email='contact@aliasrobotics.com',
-    description='A footprinting tool for ROS and SROS systems',
-    long_description='''Aztarna, a footprinting tool for robots. 
-    Provides researchers a way for researching internet connected ROS, SROS robots, as well as industrial routers.
-    
-    Alias Robotics supports original robot manufacturers assessing their security and improving their quality of software.
-    By no means we encourage or promote the unauthorized tampering with running robotic systems.
-    This can cause serious human harm and material damages.
+    author_email='2671713870@qq.com',
+    description='一款ROS类型(包括ROS,ROS2,SROS,SROS2)的机器人操作系统足迹探测工具',
+    long_description='''Aztarna,一个用于机器人脚印分析的工具。
+        为研究人员提供研究联网ROS、SROS机器人以及工业路由器的方法。
+        Alias Robotics支持原始机器人制造商评估其安全性并提升软件质量。
+        我们绝不会鼓励或推广对正在运行的机器人系统的未经授权篡改行为。
+        这可能导致严重的人身伤害和物质损失。
     ''',
     keywords=['network', 'footprinting', 'ros', 'sros', 'ics', 'industrialrouters'],
     entry_points = {
@@ -81,7 +77,7 @@ setup(
         'sphinxcontrib-qthelp==1.0.2',
         'sphinxcontrib-serializinghtml==1.1.3',
         'sphinxcontrib-websupport==1.1.0',
-        'urllib3>=1.24.2',
+        'urllib3==1.25.11',
         'uvloop==0.12.2',
         'XlsxWriter==1.1.6',
         'yarl==1.3.0',

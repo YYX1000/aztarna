@@ -1,43 +1,41 @@
-> This repository has been archived and is not maintained any further. Refer to [alurity](https://aliasrobotics.com/alurity.php) for future progress on robot footprinting and fingerprinting.
-
 # aztarna
-<a href="http://www.aliasrobotics.com"><img src="https://aliasrobotics.com/img/git_alias_logo.png" align="left" hspace="8" vspace="2" width="200"></a>
+<a href="https://www.d2e.top"><img src="https://www.d2e.top/upload/system/logo_e9b236c9-c62b-4747-8d3a-44c476ce1018.jpg" align="left" hspace="8" vspace="2" width="200"></a>
 
-This repository contains Alias Robotics' aztarna, a footprinting tool for robots.
+此仓库包含Alias Robotics的aztarna，这是一种用于机器人足迹分析的工具。
 
-**Alias Robotics supports original robot manufacturers assessing their security and improving their quality of software. By no means we encourage or promote the unauthorized tampering with running robotic systems. This can cause serious human harm and material damages.**
+**Alias Robotics致力于协助原始机器人制造商评估其安全性并提升软件质量。我们绝无意鼓励或推广对运行中的机器人系统进行未经授权的篡改。此类行为可能给人类造成严重的伤害并导致物质损失**
 
 [![PyPI version](https://badge.fury.io/py/aztarna.svg)](https://badge.fury.io/py/aztarna)   [![Documentation Status](https://readthedocs.org/projects/aztarna/badge/?version=latest)](https://aztarna.readthedocs.io/en/latest/?badge=latest)    [![Article](https://img.shields.io/badge/article-arxiv%3A1812.09490-red.svg)](https://arxiv.org/pdf/1812.09490.pdf)
 
 
 
 ### For ROS
-* A list of the ROS nodes present in the system (Publishers and Subscribers)
-* For each node, the published and subscribed topis including the topic type
-* For each node, the ROS services each of the nodes offer
-* A list of all ROS parameters present in the Parameter Server
-* A list of the active communications running in the system. A single communication includes the involved publiser/subscriber nodes and the topics
+* 系统中存在ROS节点的列表(发布者和订阅者)
+* 对于每个节点，列出已发布和订阅的主题(包括主题类型)
+* 对于每个节点，该节点提供的ROS服务
+* 参数服务器中所有ROS参数的列表。
+* 系统中正在运行的活动通信列表。单个通信包括
+涉及的发布者/订阅者节点和主题
 
-### For SROS
-* Determining if the system is a SROS master.
-* Detecting if demo configuration is in use.
-* A list of the nodes found in the system. (Extended mode)
-* A list of allow/deny policies for each node.
-  * Publishable topics.
-  * Subscriptable topics.
-  * Executable services.
-  * Readable parameters.  
+### SROS
+* 正在确定系统是否为SROS主控。
+* 正在检测演示配置是否正在使用。
+* 系统中发现的节点列表。(扩展模式)
+* 每个节点的允许/拒绝策略列表。
+  * 可发布主题。
+  * 可订阅的主题。
+  * 可执行服务。
+  * 可读参数。
   
 ### For ROS2 **(Funded under the [ROSIN project](http://rosin-project.eu/))**
-* A list of ROS2 nodes present in each communication domains.
-* A list of discovered topics on each communication domain.
-* A list of discovered services on each communication domain.
-* For each node, the relationship of published and subscribed topics.
-* For each node, the services provided by that node.
-
+* 每个通信域中存在ROS2节点的列表。
+* 每个通信域上发现的主题列表。
+* 每个通信域上发现的服务列表。
+* 对于每个节点，发布和订阅主题的关系。
+* 对于每个节点，该节点提供的服务。
 ### For Industrial routers
-*  Detecting eWON, Moxa, Sierra Wireless and Westermo industrial routers.
-*  Default credential checking for found routers.
+* 检测eWON、Moxa、Sierra Wireless和Westermo工业路由器。
+* 对发现的路由器进行默认凭据检查。
 
 ### For ROS Industrial packages **(Funded under the [ROSIN project](http://rosin-project.eu/))**
 * Detection of ROS Industrial Hosts.
@@ -47,42 +45,23 @@ This repository contains Alias Robotics' aztarna, a footprinting tool for robots
     * Kuka
         
 
-## Installing
-### For production
-Direcly from PyPi
+### 项目维护中,暂时只支持下面的运行方式
+**运行环境**
 ```
-pip3 install aztarna
+python3.12
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.3 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ros2 = jazzy
 ```
-or from the repository:
-```
-pip3 install .
-```
-
-### For development
-```
-pip3 install -e .
-```
-or
-```
-python3 setup.py develop
-```
-**Python 3.6** and the [setuptools](https://pypi.org/project/setuptools/) package is required for installation. 
-Python 3.7 is recommended.
-
-
-### ROS2 Module
-
-For usage of the ROS2 footprinting module a ROS2 installation is required. Source the setup.bash script prior to launch.
-
-### Install with docker
-```bash
-docker build -t aztarna_docker .
-```
-
+**注意**
+python版本与jazzyros2运行时的版本需一致
 ### Code usage:
 
 ```bash
-usage: aztarna [-h] -t TYPE [-a ADDRESS] [-p PORTS] [-i INPUT_FILE]
+usage: python3 -m aztarna [-h] -t TYPE [-a ADDRESS] [-p PORTS] [-i INPUT_FILE]
                [-o OUT_FILE] [-e] [-r RATE] [-d DOMAIN] [--daemon] [--hidden]
                [--shodan] [--api-key API_KEY] [--passive PASSIVE]
 
@@ -117,76 +96,72 @@ optional arguments:
 ### Run the code (example input file):
 
 ```bash
-aztarna -t ROS -p 11311 -i ros_scan_s20.csv
+python3 -m aztarna -t ROS -p 11311 -i ros_scan_s20.csv
 ```
 
-### Run the code with Docker (example input file):
-```bash
-docker run -v <host_path>:/root -it aztarna_docker -t ROS -p 11311 -i <input_file>
-```
 
 ### Run the code (example single ip address):
 
 ```bash
-aztarna -t ROS -p 11311 -a 115.129.241.241
+python3 -m aztarna -t ROS -p 11311 -a 115.129.241.241
 ```
 
 ### Run the code (example subnet):
 
 ```bash
-aztarna -t ROS -p 11311 -a 115.129.241.0/24
+python3 -m aztarna -t ROS -p 11311 -a 115.129.241.0/24
 ```
 
 ### Run the code (example single ip address, port range):
 
 ```bash
-aztarna -t ROS -p 11311-11500 -a 115.129.241.241
+python3 -m aztarna -t ROS -p 11311-11500 -a 115.129.241.241
 ```
 
 ### Run the code (example single ip address, port list):
 
 ```bash
-aztarna -t ROS -p 11311,11312,11313 -a 115.129.241.241
+python3 -m aztarna -t ROS -p 11311,11312,11313 -a 115.129.241.241
 ```
 
 ### Run the code with ROS 2 (example exploring all ranges, 0-231)
 
 ```bash
-aztarna -t ROS2
+python3 -m aztarna -t ROS2
 ```
 
 ### Run the code with ROS 2 with `ROS_DOMAIN_ID=15`
 
 ```bash
-aztarna -t ROS2 -d 15
+python3 -m aztarna -t ROS2 -d 15
 ```
 
 ### Run the code with ROS 2 using rclpy ros2cli daemon and with `ROS_DOMAIN_ID=0` while showing hidden nodes
 
 ```bash
-aztarna -t ros2 -d 0 --daemon --hidden
+python3 -m aztarna -t ros2 -d 0 --daemon --hidden
 ```
 
 ### Run de code with ROS 2 using passive mode to search the hosts. if you set 'any' as argument, is going to search on all interfaces in your system:
 
 ```bash
-aztarna -t ros2 --passive any
+python3 -m aztarna -t ros2 --passive any
 ```
 
 ### Run the code (example piping directly from zmap):
 
 ```bash
-zmap -p 11311 0.0.0.0/0 -q | aztarna -t SROS -p 11311
+python3 -m azmap -p 11311 0.0.0.0/0 -q | aztarna -t SROS -p 11311
 ```
 
 ### Run the code (example search for industrial routers in shodan)
 ```bash
-aztarna -t IROUTERS --shodan --api-key <yourshodanapikey>
+python3 -m aztarna -t IROUTERS --shodan --api-key <yourshodanapikey>
 ```
 
 ### Run the code (example search for industrial routers in shodan, piping to file)
 ```bash
-aztarna -t IROUTERS --shodan --api-key <yourshodanapikey> -o routers.csv
+python3 -m aztarna -t IROUTERS --shodan --api-key <yourshodanapikey> -o routers.csv
 ```
 ## Cite our work
 If you're using our work for your research, please cite us as:

@@ -37,6 +37,9 @@ RUN \
 # copy the aztarna files the FS and install it
 COPY . /root/aztarna
 RUN cd /root/aztarna && python3 setup.py install
-
+RUN chmod +x /root/aztarna/ros2_entrypoint.sh
+RUN apt update && apt install -y dos2unix \
+    && dos2unix /root/aztarna/ros2_entrypoint.sh \
+    && chmod +x /root/aztarna/ros2_entrypoint.sh
 
 ENTRYPOINT ["/root/aztarna/ros2_entrypoint.sh"]

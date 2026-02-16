@@ -292,7 +292,7 @@ class MoxaScanner(BaseIndustrialRouterScanner):
         :param text: HTML response provided by the router.
         :return: Authentication challenge if found
         """
-        regexp = 'set\(\"FakeChallenge\",\"(?P<challenge>[A-Z0-9]+)\"\)\;'
+        regexp = r'set\(\"FakeChallenge\",\"(?P<challenge>[A-Z0-9]+)\"\)\;'
         match = re.search(regexp, text.rstrip())
         if match:
             try:
