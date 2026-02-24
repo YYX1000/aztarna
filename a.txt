@@ -1,0 +1,1702 @@
+
+Node: /rosout XMLRPCUri: http://ros2-virtual-machine:41345
+
+	 Published topics:
+		 * /rosout_agg(Type: rosgraph_msgs/Log)
+
+	 Subscribed topics:
+		 * /clock(Type: rosgraph_msgs/Clock)
+		 * /rosout(Type: rosgraph_msgs/Log)
+
+	 Services:
+		 * /rosout/get_loggers
+		 * /rosout/set_logger_level
+
+Node: /robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:40403
+
+	 Published topics:
+		 * /rosout(Type: rosgraph_msgs/Log)
+		 * /tf(Type: tf2_msgs/TFMessage)
+		 * /tf_static(Type: tf2_msgs/TFMessage)
+
+	 Subscribed topics:
+		 * /clock(Type: rosgraph_msgs/Clock)
+		 * /go2_gazebo/joint_states(Type: sensor_msgs/JointState)
+
+	 Services:
+		 * /robot_state_publisher/get_loggers
+		 * /robot_state_publisher/set_logger_level
+
+Node: /go2_gazebo/controller_spawner XMLRPCUri: http://ros2-virtual-machine:33117
+
+	 Published topics:
+		 * /rosout(Type: rosgraph_msgs/Log)
+
+	 Subscribed topics:
+		 * /clock(Type: rosgraph_msgs/Clock)
+
+	 Services:
+		 * /go2_gazebo/controller_spawner/get_loggers
+		 * /go2_gazebo/controller_spawner/set_logger_level
+
+Node: /gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Published topics:
+		 * /rosout(Type: rosgraph_msgs/Log)
+		 * /clock(Type: rosgraph_msgs/Clock)
+		 * /gazebo/link_states(Type: gazebo_msgs/LinkStates)
+		 * /gazebo/model_states(Type: gazebo_msgs/ModelStates)
+		 * /gazebo/performance_metrics(Type: gazebo_msgs/PerformanceMetrics)
+		 * /gazebo/parameter_descriptions(Type: dynamic_reconfigure/ConfigDescription)
+		 * /gazebo/parameter_updates(Type: dynamic_reconfigure/Config)
+		 * /trunk_imu(Type: sensor_msgs/Imu)
+		 * /rslidar_points(Type: sensor_msgs/PointCloud2)
+		 * /visual/FL_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 * /visual/FR_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 * /visual/RL_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 * /visual/RR_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/joint_states(Type: sensor_msgs/JointState)
+		 * /go2_gazebo/FL_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/FL_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/FL_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/FR_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/FR_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/FR_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/RL_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/RL_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/RL_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/RR_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/RR_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 * /go2_gazebo/RR_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+
+	 Subscribed topics:
+		 * /clock(Type: rosgraph_msgs/Clock)
+		 * /gazebo/set_link_state(Type: gazebo_msgs/LinkState)
+		 * /gazebo/set_model_state(Type: gazebo_msgs/ModelState)
+		 * /apply_force/trunk(Type: geometry_msgs/Wrench)
+		 * /go2_gazebo/FL_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/FL_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/FL_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/FL_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/FL_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/FL_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/FR_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/FR_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/FR_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/FR_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/FR_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/FR_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/RL_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/RL_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/RL_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/RL_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/RL_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/RL_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/RR_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/RR_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/RR_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/RR_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 * /go2_gazebo/RR_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 * /go2_gazebo/RR_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+
+	 Services:
+		 * /gazebo/get_loggers
+		 * /gazebo/set_logger_level
+		 * /gazebo/spawn_sdf_model
+		 * /gazebo/spawn_urdf_model
+		 * /gazebo/delete_model
+		 * /gazebo/delete_light
+		 * /gazebo/get_model_properties
+		 * /gazebo/get_model_state
+		 * /gazebo/get_world_properties
+		 * /gazebo/get_joint_properties
+		 * /gazebo/get_link_properties
+		 * /gazebo/get_link_state
+		 * /gazebo/get_light_properties
+		 * /gazebo/set_light_properties
+		 * /gazebo/get_physics_properties
+		 * /gazebo/set_link_properties
+		 * /gazebo/set_physics_properties
+		 * /gazebo/set_model_state
+		 * /gazebo/set_model_configuration
+		 * /gazebo/set_joint_properties
+		 * /gazebo/set_link_state
+		 * /gazebo/pause_physics
+		 * /gazebo/unpause_physics
+		 * /gazebo/apply_body_wrench
+		 * /gazebo/apply_joint_effort
+		 * /gazebo/clear_joint_forces
+		 * /gazebo/clear_body_wrenches
+		 * /gazebo/reset_simulation
+		 * /gazebo/reset_world
+		 * /gazebo/set_parameters
+		 * /go2_gazebo/controller_manager/list_controllers
+		 * /go2_gazebo/controller_manager/list_controller_types
+		 * /go2_gazebo/controller_manager/load_controller
+		 * /go2_gazebo/controller_manager/unload_controller
+		 * /go2_gazebo/controller_manager/switch_controller
+		 * /go2_gazebo/controller_manager/reload_controller_libraries
+
+Node: /gazebo_gui XMLRPCUri: http://ros2-virtual-machine:33955
+
+	 Published topics:
+		 * /rosout(Type: rosgraph_msgs/Log)
+
+	 Subscribed topics:
+		 * /clock(Type: rosgraph_msgs/Clock)
+
+	 Services:
+		 * /gazebo_gui/get_loggers
+		 * /gazebo_gui/set_logger_level
+
+Communications: 
+
+	 Communication 0:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /clock(Type: rosgraph_msgs/Clock)
+		 - Subscribers:
+			/rosout XMLRPCUri: http://ros2-virtual-machine:41345
+			/robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:40403
+			/go2_gazebo/controller_spawner XMLRPCUri: http://ros2-virtual-machine:33117
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+			/gazebo_gui XMLRPCUri: http://ros2-virtual-machine:33955
+
+	 Communication 1:
+		 - Publishers:
+			/rosout XMLRPCUri: http://ros2-virtual-machine:41345
+		 - Topic: /rosout_agg(Type: rosgraph_msgs/Log)
+		 - Subscribers:
+
+	 Communication 2:
+		 - Publishers:
+			/robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:40403
+			/go2_gazebo/controller_spawner XMLRPCUri: http://ros2-virtual-machine:33117
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+			/gazebo_gui XMLRPCUri: http://ros2-virtual-machine:33955
+		 - Topic: /rosout(Type: rosgraph_msgs/Log)
+		 - Subscribers:
+			/rosout XMLRPCUri: http://ros2-virtual-machine:41345
+
+	 Communication 3:
+		 - Publishers:
+			/robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:40403
+		 - Topic: /tf(Type: tf2_msgs/TFMessage)
+		 - Subscribers:
+
+	 Communication 4:
+		 - Publishers:
+			/robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:40403
+		 - Topic: /tf_static(Type: tf2_msgs/TFMessage)
+		 - Subscribers:
+
+	 Communication 5:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/joint_states(Type: sensor_msgs/JointState)
+		 - Subscribers:
+			/robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:40403
+
+	 Communication 6:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /gazebo/link_states(Type: gazebo_msgs/LinkStates)
+		 - Subscribers:
+
+	 Communication 7:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /gazebo/model_states(Type: gazebo_msgs/ModelStates)
+		 - Subscribers:
+
+	 Communication 8:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /gazebo/performance_metrics(Type: gazebo_msgs/PerformanceMetrics)
+		 - Subscribers:
+
+	 Communication 9:
+		 - Publishers:
+		 - Topic: /gazebo/set_link_state(Type: gazebo_msgs/LinkState)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 10:
+		 - Publishers:
+		 - Topic: /gazebo/set_model_state(Type: gazebo_msgs/ModelState)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 11:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /gazebo/parameter_descriptions(Type: dynamic_reconfigure/ConfigDescription)
+		 - Subscribers:
+
+	 Communication 12:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /gazebo/parameter_updates(Type: dynamic_reconfigure/Config)
+		 - Subscribers:
+
+	 Communication 13:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /trunk_imu(Type: sensor_msgs/Imu)
+		 - Subscribers:
+
+	 Communication 14:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /rslidar_points(Type: sensor_msgs/PointCloud2)
+		 - Subscribers:
+
+	 Communication 15:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /visual/FL_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 16:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /visual/FR_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 17:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /visual/RL_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 18:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /visual/RR_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 19:
+		 - Publishers:
+		 - Topic: /apply_force/trunk(Type: geometry_msgs/Wrench)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 20:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 21:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 22:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/FL_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 23:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 24:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 25:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/FL_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 26:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 27:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 28:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/FL_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 29:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 30:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 31:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/FR_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 32:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 33:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 34:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/FR_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 35:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 36:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 37:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/FR_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 38:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 39:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 40:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/RL_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 41:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 42:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 43:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/RL_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 44:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 45:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 46:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/RL_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 47:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 48:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 49:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/RR_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 50:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 51:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 52:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/RR_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 53:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 54:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+
+	 Communication 55:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:46431
+		 - Topic: /go2_gazebo/RR_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+Parameters:
+	 * /run_id (Type: string, Value: c2c3ca70-1149-11f1-b826-a782035a2fea)
+	 * /roslaunch/uris/host_ros2_virtual_machine__44883 (Type: string, Value: http://ros2-virtual-machine:44883/)
+	 * /rosversion (Type: string, Value: 1.17.4)
+	 * /rosdistro (Type: string, Value: noetic)
+	 * /use_sim_time (Type: bool, Value: True)
+	 * /gazebo/enable_ros_network (Type: bool, Value: True)
+	 * /gazebo/time_step (Type: float, Value: 0.001)
+	 * /gazebo/max_update_rate (Type: float, Value: 1000.0)
+	 * /gazebo/gravity_x (Type: float, Value: 0.0)
+	 * /gazebo/gravity_y (Type: float, Value: 0.0)
+	 * /gazebo/gravity_z (Type: float, Value: -9.8)
+	 * /gazebo/auto_disable_bodies (Type: bool, Value: False)
+	 * /gazebo/sor_pgs_precon_iters (Type: int, Value: 0)
+	 * /gazebo/sor_pgs_iters (Type: int, Value: 50)
+	 * /gazebo/sor_pgs_w (Type: float, Value: 1.3)
+	 * /gazebo/sor_pgs_rms_error_tol (Type: float, Value: 0.0)
+	 * /gazebo/cfm (Type: float, Value: 0.0)
+	 * /gazebo/erp (Type: float, Value: 0.2)
+	 * /gazebo/contact_surface_layer (Type: float, Value: 0.001)
+	 * /gazebo/contact_max_correcting_vel (Type: float, Value: 100.0)
+	 * /gazebo/max_contacts (Type: int, Value: 20)
+	 * /robot_description (Type: string, Value: <?xml version="1.0" ?>
+<!-- =================================================================================== -->
+<!-- |    This document was autogenerated by xacro from /home/ros2/桌面/test_ws/src/unitree_ros-master/robots/go2_description/xacro/robot.xacro | -->
+<!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
+<!-- =================================================================================== -->
+<robot name="go2">
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+  <material name="green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+  <material name="grey">
+    <color rgba="0.2 0.2 0.2 0.0"/>
+  </material>
+  <material name="silver">
+    <color rgba="0.9137254901960784 0.9137254901960784 0.8470588235294118 1.0"/>
+  </material>
+  <material name="orange">
+    <color rgba="1.0 0.4235294117647059 0.0392156862745098 1.0"/>
+  </material>
+  <material name="brown">
+    <color rgba="0.8705882352941177 0.8117647058823529 0.7647058823529411 1.0"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+  <!-- ================================================= -->
+  <!-- ros_control -->
+  <!-- ================================================= -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+      <robotNamespace>/go2_gazebo</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+  <!-- ================================================= -->
+  <!-- External force plugin -->
+  <!-- ================================================= -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_force.so" name="gazebo_ros_force">
+      <bodyName>trunk</bodyName>
+      <topicName>/apply_force/trunk</topicName>
+    </plugin>
+  </gazebo>
+  <!-- ================================================= -->
+  <!-- IMU -->
+  <!-- ================================================= -->
+  <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>1000</update_rate>
+      <visualize>false</visualize>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topicName>/trunk_imu</topicName>
+        <bodyName>imu_link</bodyName>
+        <frameName>imu_link</frameName>
+        <updateRateHZ>1000.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <!-- ================================================= -->
+  <!-- ⭐ RS16 3D LiDAR (PointCloud2) -->
+  <!-- ================================================= -->
+  <gazebo reference="lidar">
+    <sensor name="robosense_rs16" type="gpu_ray">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>1800</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.1415926</min_angle>
+            <max_angle> 3.1415926</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>16</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.262</min_angle>
+            <max_angle> 0.262</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.1</min>
+          <max>100.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <!-- ⭐ Robosense GPU 插件（只会输出 PointCloud2） -->
+      <plugin filename="libgazebo_ros_robosense_gpu_laser.so" name="robosense_plugin">
+        <topicName>/rslidar_points</topicName>
+        <frameName>lidar</frameName>
+        <min_range>0.1</min_range>
+        <max_range>100.0</max_range>
+        <gaussianNoise>0.01</gaussianNoise>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <!-- ================================================= -->
+  <!-- Foot contact sensors -->
+  <!-- ================================================= -->
+  <gazebo reference="FR_calf">
+    <sensor name="FR_foot_contact" type="contact">
+      <update_rate>100</update_rate>
+      <plugin filename="libunitreeFootContactPlugin.so" name="contactPlugin"/>
+      <contact>
+        <collision>FR_calf_fixed_joint_lump__FR_foot_collision_1</collision>
+      </contact>
+    </sensor>
+  </gazebo>
+  <gazebo reference="FL_calf">
+    <sensor name="FL_foot_contact" type="contact">
+      <update_rate>100</update_rate>
+      <plugin filename="libunitreeFootContactPlugin.so" name="contactPlugin"/>
+      <contact>
+        <collision>FL_calf_fixed_joint_lump__FL_foot_collision_1</collision>
+      </contact>
+    </sensor>
+  </gazebo>
+  <gazebo reference="RR_calf">
+    <sensor name="RR_foot_contact" type="contact">
+      <update_rate>100</update_rate>
+      <plugin filename="libunitreeFootContactPlugin.so" name="contactPlugin"/>
+      <contact>
+        <collision>RR_calf_fixed_joint_lump__RR_foot_collision_1</collision>
+      </contact>
+    </sensor>
+  </gazebo>
+  <gazebo reference="RL_calf">
+    <sensor name="RL_foot_contact" type="contact">
+      <update_rate>100</update_rate>
+      <plugin filename="libunitreeFootContactPlugin.so" name="contactPlugin"/>
+      <contact>
+        <collision>RL_calf_fixed_joint_lump__RL_foot_collision_1</collision>
+      </contact>
+    </sensor>
+  </gazebo>
+  <!-- ================================================= -->
+  <!-- Friction -->
+  <!-- ================================================= -->
+  <gazebo reference="trunk">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <kp value="1000000.0"/>
+    <kd value="1.0"/>
+  </gazebo>
+  <gazebo reference="FL_foot">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+  </gazebo>
+  <gazebo reference="FR_foot">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+  </gazebo>
+  <gazebo reference="RL_foot">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+  </gazebo>
+  <gazebo reference="RR_foot">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+  </gazebo>
+  <!-- ================= base：根 link（占位） ================= -->
+  <link name="base">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+  <!-- ================= base -> trunk ================= -->
+  <joint name="floating_base" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base"/>
+    <child link="trunk"/>
+  </joint>
+  <!-- ================= trunk：机器狗机身 ================= -->
+  <link name="trunk">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/base.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.3762 0.0935 0.114"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.021112 0.0 -0.005366"/>
+      <mass value="6.921"/>
+      <inertia ixx="0.02448" ixy="0.00012166" ixz="0.0014849" iyy="0.098077" iyz="-3.12e-05" izz="0.107"/>
+    </inertial>
+  </link>
+  <!-- ================= IMU ================= -->
+  <joint name="imu_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="trunk"/>
+    <child link="imu_link"/>
+  </joint>
+  <link name="imu_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.001"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+  <!-- ================= 前置相机（仅 TF） ================= -->
+  <joint name="front_camera_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.32715 -0.00003 0.04297"/>
+    <parent link="trunk"/>
+    <child link="front_camera"/>
+  </joint>
+  <link name="front_camera"/>
+  <!-- ================= 激光雷达 ================= -->
+  <link name="lidar">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5"/>
+    </inertial>
+    <visual>
+      <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/robosense_16.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/robosense_16.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="lidar_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.23 0 0.085"/>
+    <parent link="trunk"/>
+    <child link="lidar"/>
+  </joint>
+  <joint name="FR_hip_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0.1934 -0.0465 0"/>
+    <parent link="trunk"/>
+    <child link="FR_hip"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="23.7" lower="-1.0472" upper="1.0472" velocity="30.1"/>
+  </joint>
+  <joint name="FR_hip_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.11215 -0.04675 0"/>
+    <parent link="trunk"/>
+    <child link="FR_hip_rotor"/>
+  </joint>
+  <link name="FR_hip">
+    <visual>
+      <origin rpy="3.141592653589793 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/hip.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 -0.0955 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.046"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0054 -0.00194 -0.000105"/>
+      <mass value="0.678"/>
+      <inertia ixx="0.00048" ixy="3.01e-06" ixz="1.11e-06" iyy="0.000884" iyz="1.42e-06" izz="0.000596"/>
+    </inertial>
+  </link>
+  <link name="FR_hip_rotor">
+    <visual>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="0 ${PI/2.0} 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="0.000111842" ixy="0.0" ixz="0.0" iyy="5.9647e-05" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="FR_thigh_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 -0.0955 0"/>
+    <parent link="FR_hip"/>
+    <child link="FR_thigh"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="23.7" lower="-1.5708" upper="3.4907" velocity="30.1"/>
+  </joint>
+  <joint name="FR_thigh_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.00015 0"/>
+    <parent link="FR_hip"/>
+    <child link="FR_thigh_rotor"/>
+  </joint>
+  <link name="FR_thigh">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/thigh_mirror.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065"/>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00374 0.0223 -0.0327"/>
+      <mass value="1.152"/>
+      <inertia ixx="0.00584" ixy="-8.72e-05" ixz="-0.000289" iyy="0.0058" iyz="-0.000808" izz="0.00103"/>
+    </inertial>
+  </link>
+  <link name="FR_thigh_rotor">
+    <visual>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="${PI/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="5.9647e-05" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="FR_calf_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.213"/>
+    <parent link="FR_thigh"/>
+    <child link="FR_calf"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="35.55" lower="-2.7227" upper="-0.83776" velocity="20.06"/>
+  </joint>
+  <joint name="FR_calf_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.03235 0"/>
+    <parent link="FR_thigh"/>
+    <child link="FR_calf_rotor"/>
+  </joint>
+  <link name="FR_calf">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/calf.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065"/>
+      <geometry>
+        <box size="0.213 0.016 0.016"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00548 -0.000975 -0.115"/>
+      <mass value="0.154"/>
+      <inertia ixx="0.00108" ixy="3.4e-07" ixz="1.72e-05" iyy="0.0011" iyz="8.28e-06" izz="3.29e-05"/>
+    </inertial>
+  </link>
+  <link name="FR_calf_rotor">
+    <visual>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="${PI/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="5.9647e-05" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="FR_foot_fixed" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 -0.213"/>
+    <parent link="FR_calf"/>
+    <child link="FR_foot"/>
+  </joint>
+  <link name="FR_foot">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.06"/>
+      <inertia ixx="9.600000000000001e-06" ixy="0.0" ixz="0.0" iyy="9.600000000000001e-06" iyz="0.0" izz="9.600000000000001e-06"/>
+    </inertial>
+  </link>
+  <transmission name="FR_hip_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="FR_hip_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="FR_hip_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="FR_thigh_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="FR_thigh_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="FR_thigh_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="FR_calf_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="FR_calf_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="FR_calf_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <joint name="FL_hip_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0.1934 0.0465 0"/>
+    <parent link="trunk"/>
+    <child link="FL_hip"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="23.7" lower="-1.0472" upper="1.0472" velocity="30.1"/>
+  </joint>
+  <joint name="FL_hip_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.11215 0.04675 0"/>
+    <parent link="trunk"/>
+    <child link="FL_hip_rotor"/>
+  </joint>
+  <link name="FL_hip">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/hip.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0.0955 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.046"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0054 0.00194 -0.000105"/>
+      <mass value="0.678"/>
+      <inertia ixx="0.00048" ixy="-3.01e-06" ixz="1.11e-06" iyy="0.000884" iyz="-1.42e-06" izz="0.000596"/>
+    </inertial>
+  </link>
+  <link name="FL_hip_rotor">
+    <visual>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="0 ${PI/2.0} 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="0.000111842" ixy="0.0" ixz="0.0" iyy="5.9647e-05" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="FL_thigh_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0.0955 0"/>
+    <parent link="FL_hip"/>
+    <child link="FL_thigh"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="23.7" lower="-1.5708" upper="3.4907" velocity="30.1"/>
+  </joint>
+  <joint name="FL_thigh_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 -0.00015 0"/>
+    <parent link="FL_hip"/>
+    <child link="FL_thigh_rotor"/>
+  </joint>
+  <link name="FL_thigh">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/thigh.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065"/>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00374 -0.0223 -0.0327"/>
+      <mass value="1.152"/>
+      <inertia ixx="0.00584" ixy="8.72e-05" ixz="-0.000289" iyy="0.0058" iyz="0.000808" izz="0.00103"/>
+    </inertial>
+  </link>
+  <link name="FL_thigh_rotor">
+    <visual>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="${PI/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="5.9647e-05" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="FL_calf_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.213"/>
+    <parent link="FL_thigh"/>
+    <child link="FL_calf"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="35.55" lower="-2.7227" upper="-0.83776" velocity="20.06"/>
+  </joint>
+  <joint name="FL_calf_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 -0.03235 0"/>
+    <parent link="FL_thigh"/>
+    <child link="FL_calf_rotor"/>
+  </joint>
+  <link name="FL_calf">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/calf.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065"/>
+      <geometry>
+        <box size="0.213 0.016 0.016"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00548 -0.000975 -0.115"/>
+      <mass value="0.154"/>
+      <inertia ixx="0.00108" ixy="3.4e-07" ixz="1.72e-05" iyy="0.0011" iyz="8.28e-06" izz="3.29e-05"/>
+    </inertial>
+  </link>
+  <link name="FL_calf_rotor">
+    <visual>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="${PI/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="5.9647e-05" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="FL_foot_fixed" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 -0.213"/>
+    <parent link="FL_calf"/>
+    <child link="FL_foot"/>
+  </joint>
+  <link name="FL_foot">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.06"/>
+      <inertia ixx="9.600000000000001e-06" ixy="0.0" ixz="0.0" iyy="9.600000000000001e-06" iyz="0.0" izz="9.600000000000001e-06"/>
+    </inertial>
+  </link>
+  <transmission name="FL_hip_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="FL_hip_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="FL_hip_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="FL_thigh_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="FL_thigh_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="FL_thigh_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="FL_calf_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="FL_calf_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="FL_calf_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <joint name="RR_hip_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="-0.1934 -0.0465 0"/>
+    <parent link="trunk"/>
+    <child link="RR_hip"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="23.7" lower="-1.0472" upper="1.0472" velocity="30.1"/>
+  </joint>
+  <joint name="RR_hip_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.11215 -0.04675 0"/>
+    <parent link="trunk"/>
+    <child link="RR_hip_rotor"/>
+  </joint>
+  <link name="RR_hip">
+    <visual>
+      <origin rpy="3.141592653589793 3.141592653589793 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/hip.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 -0.0955 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.046"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0054 -0.00194 -0.000105"/>
+      <mass value="0.678"/>
+      <inertia ixx="0.00048" ixy="-3.01e-06" ixz="-1.11e-06" iyy="0.000884" iyz="1.42e-06" izz="0.000596"/>
+    </inertial>
+  </link>
+  <link name="RR_hip_rotor">
+    <visual>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="0 ${PI/2.0} 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="0.000111842" ixy="0.0" ixz="0.0" iyy="5.9647e-05" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="RR_thigh_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 -0.0955 0"/>
+    <parent link="RR_hip"/>
+    <child link="RR_thigh"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="23.7" lower="-1.5708" upper="3.4907" velocity="30.1"/>
+  </joint>
+  <joint name="RR_thigh_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.00015 0"/>
+    <parent link="RR_hip"/>
+    <child link="RR_thigh_rotor"/>
+  </joint>
+  <link name="RR_thigh">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/thigh_mirror.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065"/>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00374 0.0223 -0.0327"/>
+      <mass value="1.152"/>
+      <inertia ixx="0.00584" ixy="-8.72e-05" ixz="-0.000289" iyy="0.0058" iyz="-0.000808" izz="0.00103"/>
+    </inertial>
+  </link>
+  <link name="RR_thigh_rotor">
+    <visual>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="${PI/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="5.9647e-05" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="RR_calf_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.213"/>
+    <parent link="RR_thigh"/>
+    <child link="RR_calf"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="35.55" lower="-2.7227" upper="-0.83776" velocity="20.06"/>
+  </joint>
+  <joint name="RR_calf_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.03235 0"/>
+    <parent link="RR_thigh"/>
+    <child link="RR_calf_rotor"/>
+  </joint>
+  <link name="RR_calf">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/calf.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065"/>
+      <geometry>
+        <box size="0.213 0.016 0.016"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00548 -0.000975 -0.115"/>
+      <mass value="0.154"/>
+      <inertia ixx="0.00108" ixy="3.4e-07" ixz="1.72e-05" iyy="0.0011" iyz="8.28e-06" izz="3.29e-05"/>
+    </inertial>
+  </link>
+  <link name="RR_calf_rotor">
+    <visual>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="${PI/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="5.9647e-05" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="RR_foot_fixed" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 -0.213"/>
+    <parent link="RR_calf"/>
+    <child link="RR_foot"/>
+  </joint>
+  <link name="RR_foot">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.06"/>
+      <inertia ixx="9.600000000000001e-06" ixy="0.0" ixz="0.0" iyy="9.600000000000001e-06" iyz="0.0" izz="9.600000000000001e-06"/>
+    </inertial>
+  </link>
+  <transmission name="RR_hip_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RR_hip_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RR_hip_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="RR_thigh_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RR_thigh_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RR_thigh_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="RR_calf_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RR_calf_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RR_calf_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <joint name="RL_hip_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="-0.1934 0.0465 0"/>
+    <parent link="trunk"/>
+    <child link="RL_hip"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="23.7" lower="-1.0472" upper="1.0472" velocity="30.1"/>
+  </joint>
+  <joint name="RL_hip_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.11215 0.04675 0"/>
+    <parent link="trunk"/>
+    <child link="RL_hip_rotor"/>
+  </joint>
+  <link name="RL_hip">
+    <visual>
+      <origin rpy="0 3.141592653589793 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/hip.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0.0955 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.046"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0054 0.00194 -0.000105"/>
+      <mass value="0.678"/>
+      <inertia ixx="0.00048" ixy="3.01e-06" ixz="-1.11e-06" iyy="0.000884" iyz="-1.42e-06" izz="0.000596"/>
+    </inertial>
+  </link>
+  <link name="RL_hip_rotor">
+    <visual>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="0 ${PI/2.0} 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="0.000111842" ixy="0.0" ixz="0.0" iyy="5.9647e-05" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="RL_thigh_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0.0955 0"/>
+    <parent link="RL_hip"/>
+    <child link="RL_thigh"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="23.7" lower="-1.5708" upper="3.4907" velocity="30.1"/>
+  </joint>
+  <joint name="RL_thigh_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 -0.00015 0"/>
+    <parent link="RL_hip"/>
+    <child link="RL_thigh_rotor"/>
+  </joint>
+  <link name="RL_thigh">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/thigh.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065"/>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00374 -0.0223 -0.0327"/>
+      <mass value="1.152"/>
+      <inertia ixx="0.00584" ixy="8.72e-05" ixz="-0.000289" iyy="0.0058" iyz="0.000808" izz="0.00103"/>
+    </inertial>
+  </link>
+  <link name="RL_thigh_rotor">
+    <visual>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="${PI/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="5.9647e-05" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="RL_calf_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.213"/>
+    <parent link="RL_thigh"/>
+    <child link="RL_calf"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+    <limit effort="35.55" lower="-2.7227" upper="-0.83776" velocity="20.06"/>
+  </joint>
+  <joint name="RL_calf_rotor_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 -0.03235 0"/>
+    <parent link="RL_thigh"/>
+    <child link="RL_calf_rotor"/>
+  </joint>
+  <link name="RL_calf">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://go2_description/meshes/calf.dae" scale="1 1 1"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 0" xyz="0 0 -0.1065"/>
+      <geometry>
+        <box size="0.213 0.016 0.016"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00548 -0.000975 -0.115"/>
+      <mass value="0.154"/>
+      <inertia ixx="0.00108" ixy="3.4e-07" ixz="1.72e-05" iyy="0.0011" iyz="8.28e-06" izz="3.29e-05"/>
+    </inertial>
+  </link>
+  <link name="RL_calf_rotor">
+    <visual>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.035"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <!-- <collision>
+                <origin rpy="${PI/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="0.02" radius="0.035"/>
+                </geometry>
+            </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <mass value="0.089"/>
+      <inertia ixx="5.9647e-05" ixy="0.0" ixz="0.0" iyy="0.000111842" iyz="0.0" izz="5.9647e-05"/>
+    </inertial>
+  </link>
+  <joint name="RL_foot_fixed" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 -0.213"/>
+    <parent link="RL_calf"/>
+    <child link="RL_foot"/>
+  </joint>
+  <link name="RL_foot">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+      <!-- <material name="orange"/> -->
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.06"/>
+      <inertia ixx="9.600000000000001e-06" ixy="0.0" ixz="0.0" iyy="9.600000000000001e-06" iyz="0.0" izz="9.600000000000001e-06"/>
+    </inertial>
+  </link>
+  <transmission name="RL_hip_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RL_hip_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RL_hip_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="RL_thigh_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RL_thigh_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RL_thigh_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="RL_calf_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RL_calf_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="RL_calf_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+</robot>)
+	 * /go2_gazebo/joint_state_controller/type (Type: string, Value: joint_state_controller/JointStateController)
+	 * /go2_gazebo/joint_state_controller/publish_rate (Type: int, Value: 1000)
+	 * /go2_gazebo/FL_hip_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/FL_hip_controller/joint (Type: string, Value: FL_hip_joint)
+	 * /go2_gazebo/FL_hip_controller/pid/p (Type: float, Value: 100.0)
+	 * /go2_gazebo/FL_hip_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/FL_hip_controller/pid/d (Type: float, Value: 5.0)
+	 * /go2_gazebo/FL_thigh_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/FL_thigh_controller/joint (Type: string, Value: FL_thigh_joint)
+	 * /go2_gazebo/FL_thigh_controller/pid/p (Type: float, Value: 300.0)
+	 * /go2_gazebo/FL_thigh_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/FL_thigh_controller/pid/d (Type: float, Value: 8.0)
+	 * /go2_gazebo/FL_calf_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/FL_calf_controller/joint (Type: string, Value: FL_calf_joint)
+	 * /go2_gazebo/FL_calf_controller/pid/p (Type: float, Value: 300.0)
+	 * /go2_gazebo/FL_calf_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/FL_calf_controller/pid/d (Type: float, Value: 8.0)
+	 * /go2_gazebo/FR_hip_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/FR_hip_controller/joint (Type: string, Value: FR_hip_joint)
+	 * /go2_gazebo/FR_hip_controller/pid/p (Type: float, Value: 100.0)
+	 * /go2_gazebo/FR_hip_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/FR_hip_controller/pid/d (Type: float, Value: 5.0)
+	 * /go2_gazebo/FR_thigh_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/FR_thigh_controller/joint (Type: string, Value: FR_thigh_joint)
+	 * /go2_gazebo/FR_thigh_controller/pid/p (Type: float, Value: 300.0)
+	 * /go2_gazebo/FR_thigh_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/FR_thigh_controller/pid/d (Type: float, Value: 8.0)
+	 * /go2_gazebo/FR_calf_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/FR_calf_controller/joint (Type: string, Value: FR_calf_joint)
+	 * /go2_gazebo/FR_calf_controller/pid/p (Type: float, Value: 300.0)
+	 * /go2_gazebo/FR_calf_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/FR_calf_controller/pid/d (Type: float, Value: 8.0)
+	 * /go2_gazebo/RL_hip_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/RL_hip_controller/joint (Type: string, Value: RL_hip_joint)
+	 * /go2_gazebo/RL_hip_controller/pid/p (Type: float, Value: 100.0)
+	 * /go2_gazebo/RL_hip_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/RL_hip_controller/pid/d (Type: float, Value: 5.0)
+	 * /go2_gazebo/RL_thigh_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/RL_thigh_controller/joint (Type: string, Value: RL_thigh_joint)
+	 * /go2_gazebo/RL_thigh_controller/pid/p (Type: float, Value: 300.0)
+	 * /go2_gazebo/RL_thigh_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/RL_thigh_controller/pid/d (Type: float, Value: 8.0)
+	 * /go2_gazebo/RL_calf_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/RL_calf_controller/joint (Type: string, Value: RL_calf_joint)
+	 * /go2_gazebo/RL_calf_controller/pid/p (Type: float, Value: 300.0)
+	 * /go2_gazebo/RL_calf_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/RL_calf_controller/pid/d (Type: float, Value: 8.0)
+	 * /go2_gazebo/RR_hip_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/RR_hip_controller/joint (Type: string, Value: RR_hip_joint)
+	 * /go2_gazebo/RR_hip_controller/pid/p (Type: float, Value: 100.0)
+	 * /go2_gazebo/RR_hip_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/RR_hip_controller/pid/d (Type: float, Value: 5.0)
+	 * /go2_gazebo/RR_thigh_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/RR_thigh_controller/joint (Type: string, Value: RR_thigh_joint)
+	 * /go2_gazebo/RR_thigh_controller/pid/p (Type: float, Value: 300.0)
+	 * /go2_gazebo/RR_thigh_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/RR_thigh_controller/pid/d (Type: float, Value: 8.0)
+	 * /go2_gazebo/RR_calf_controller/type (Type: string, Value: unitree_legged_control/UnitreeJointController)
+	 * /go2_gazebo/RR_calf_controller/joint (Type: string, Value: RR_calf_joint)
+	 * /go2_gazebo/RR_calf_controller/pid/p (Type: float, Value: 300.0)
+	 * /go2_gazebo/RR_calf_controller/pid/i (Type: float, Value: 0.0)
+	 * /go2_gazebo/RR_calf_controller/pid/d (Type: float, Value: 8.0)
+	 * /robot_name (Type: string, Value: go2)
+
+
+

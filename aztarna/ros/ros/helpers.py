@@ -5,7 +5,7 @@ ROS Scanner helper module.
 
 :author Alias Robotics SL (https://aliasrobotics.com)
 """
-from aztarna.ros.commons import BaseNodeROS, BaseNodeROS, BaseServiceROS, BaseHostROS
+from aztarna.ros.commons import BaseNodeROS, BaseNodeROS, BaseServiceROS, BaseHostROS, ParameterROS, ActionROS
 
 class ROSHost(BaseHostROS):
     """
@@ -17,6 +17,8 @@ class ROSHost(BaseHostROS):
         self.port = port
         self.communications = []
         self.services = []
+        self.params = []
+        self.actions = []
 
     def __repr__(self):
         if len(self.nodes) == 0:
@@ -59,3 +61,30 @@ class Service(BaseServiceROS):
 
     def __str__(self):
         return '{}'.format(self.name)
+
+
+class Param(ParameterROS):
+    """
+    Param class, an extension of ParameterROS
+    """
+    def __init__(self, name, param_type, value):
+        super().__init__()
+        self.name = name
+        self.type = param_type
+        self.value = value
+
+    def __str__(self):
+        return '{} (Type: {}, Value: {})'.format(self.name, self.type, self.value)
+
+
+class Action(ActionROS):
+    """
+    Action class, an extension of ActionROS
+    """
+    def __init__(self, name, action_type):
+        super().__init__()
+        self.name = name
+        self.type = action_type
+
+    def __str__(self):
+        return '{} (Type: {})'.format(self.name, self.type)

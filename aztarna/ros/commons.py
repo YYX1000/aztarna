@@ -56,6 +56,20 @@ class ParameterROS:
         self.value = ''
 
 
+class ActionROS:
+    """
+    A class representing a ROS action
+    """
+    def __init__(self):
+        self.name = ''
+        self.type = ''
+        self.goal_topic = ''
+        self.cancel_topic = ''
+        self.status_topic = ''
+        self.feedback_topic = ''
+        self.result_topic = ''
+
+
 class CommunicationROS:
     """
     A class representing a ROS communication, including the publishers, subscribers and the topics involveds

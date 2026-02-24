@@ -13,7 +13,8 @@ from aiohttp_xmlrpc.client import ServerProxy
 from aztarna.ros.commons import CommunicationROS
 from aztarna.commons import RobotAdapter
 from aztarna.ros.helpers import HelpersROS
-from aztarna.ros.ros.helpers import Node, Topic, Service
+from aztarna.ros.ros.helpers import Node, Topic, Service, Param, Action
+from aztarna.ros.ros.helpers import ROSHost
 from aztarna.ros.ros.helpers import ROSHost
 import sys
 from ipaddress import IPv4Address
@@ -66,6 +67,8 @@ class ROSScanner(RobotAdapter):
                                         comm.subscribers.append(node)
                                 ros_host.communications.append(comm)
                             await self.set_xmlrpcuri_node(ros_master_client, ros_host)
+                            await self.scan_params(ros_master_client, ros_host)
+                            await self.scan_actions(ros_master_client, ros_host)
                         await client.close()
                         self.logger.warning('[+] ROS Host found at {}:{}'.format(ros_host.address, ros_host.port))
                     else:
@@ -157,6 +160,130 @@ class ROSScanner(RobotAdapter):
                 node = self.get_create_node(node_name, host)
                 node.services.append(Service(service_line[0]))
 
+    async def scan_params(self, ros_master_client, host):
+        """
+        Scan and extract all parameters from the ROS parameter server.
+
+        :param ros_master_client: xml-rpc object for the ROS Master Client
+        :param host: Current ROS host
+        """
+        try:
+            code, msg, param_names = await ros_master_client.getParamNames('')
+            if code == 1 and param_names:
+                for param_name in param_names:
+                    try:
+                        code, msg, param_value = await ros_master_client.getParam('', param_name)
+                        param_type = self.get_param_type(param_value)
+                        param = Param(param_name, param_type, param_value)
+                        host.params.append(param)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+
+    @staticmethod
+    def get_param_type(param_value):
+        """
+        Determine the type of a parameter value.
+
+        :param param_value: The value of the parameter
+        :return: String representation of the type
+        """
+        if param_value is None:
+            return 'none'
+        elif isinstance(param_value, bool):
+            return 'bool'
+        elif isinstance(param_value, int):
+            return 'int'
+        elif isinstance(param_value, float):
+            return 'float'
+        elif isinstance(param_value, str):
+            return 'string'
+        elif isinstance(param_value, list):
+            return 'list'
+        elif isinstance(param_value, dict):
+            return 'dict'
+        else:
+            return str(type(param_value).__name__)
+
+    async def scan_actions(self, ros_master_client, host):
+        """
+        Scan and extract all actions from the ROS system.
+
+        :param ros_master_client: xml-rpc object for the ROS Master Client
+        :param host: Current ROS host
+        """
+        try:
+            publishers_array, subscribers_array, services_array = await self._get_system_state(ros_master_client)
+            all_topics = await self._get_all_topics(ros_master_client)
+            
+            action_candidates = set()
+            for topic_name in all_topics.keys():
+                if topic_name.endswith('/goal') or topic_name.endswith('/cancel') or \
+                   topic_name.endswith('/status') or topic_name.endswith('/feedback') or \
+                   topic_name.endswith('/result'):
+                    action_name = topic_name.rsplit('/', 1)[0]
+                    action_candidates.add(action_name)
+            
+            for action_name in action_candidates:
+                action_type = self._infer_action_type(action_name, all_topics)
+                action = Action(action_name, action_type)
+                action.goal_topic = action_name + '/goal'
+                action.cancel_topic = action_name + '/cancel'
+                action.status_topic = action_name + '/status'
+                action.feedback_topic = action_name + '/feedback'
+                action.result_topic = action_name + '/result'
+                host.actions.append(action)
+        except Exception:
+            pass
+
+    async def _get_system_state(self, ros_master_client):
+        """
+        Get the system state from ROS master.
+
+        :param ros_master_client: xml-rpc object for the ROS Master Client
+        :return: publishers_array, subscribers_array, services_array
+        """
+        code, msg, val = await ros_master_client.getSystemState('')
+        if code == 1:
+            return val[0], val[1], val[2]
+        return [], [], []
+
+    async def _get_all_topics(self, ros_master_client):
+        """
+        Get all topics and their types.
+
+        :param ros_master_client: xml-rpc object for the ROS Master Client
+        :return: Dictionary of topics
+        """
+        topics = {}
+        try:
+            topic_types = await ros_master_client.getTopicTypes('')
+            for topic_type_element in topic_types[2]:
+                topic_name = topic_type_element[0]
+                topic_type = topic_type_element[1]
+                topics[topic_name] = topic_type
+        except Exception:
+            pass
+        return topics
+
+    def _infer_action_type(self, action_name, all_topics):
+        """
+        Infer the action type from the goal topic.
+
+        :param action_name: The name of the action
+        :param all_topics: Dictionary of all topics
+        :return: The action type string
+        """
+        goal_topic = action_name + '/goal'
+        if goal_topic in all_topics:
+            topic_type = all_topics[goal_topic]
+            if '/' in topic_type:
+                parts = topic_type.split('/')
+                if len(parts) >= 2 and parts[1]:
+                    return parts[1].replace('Goal', '')
+        return 'unknown'
+
     async def scan_network(self):
         """
         Scan the provided network (from args) searching for ROS nodes.
@@ -217,6 +344,21 @@ class ROSScanner(RobotAdapter):
                 print('\t\t - Subscribers:')
                 for node in comm.subscribers:
                     print('\t\t\t' + str(node))
+
+            if host.params:
+                print('\nParameters:')
+                for param in host.params:
+                    print('\t * ' + str(param))
+
+            if host.actions:
+                print('\nActions:')
+                for action in host.actions:
+                    print('\t * ' + str(action))
+                    print('\t\t - Goal topic: ' + action.goal_topic)
+                    print('\t\t - Cancel topic: ' + action.cancel_topic)
+                    print('\t\t - Status topic: ' + action.status_topic)
+                    print('\t\t - Feedback topic: ' + action.feedback_topic)
+                    print('\t\t - Result topic: ' + action.result_topic)
             print('\n\n')
 
     def write_to_file(self, out_file):
@@ -226,16 +368,20 @@ class ROSScanner(RobotAdapter):
         :param out_file: The file where to write the results
         """
         lines = []
-        header = 'Master Address;Master port;Node Name;Node Address;Port;Published Topics;Subscribed Topics;Services\n'
+        header = 'Master Address;Master port;Node Name;Node Address;Port;Published Topics;Subscribed Topics;Services;Parameters;Actions\n'
         lines.append(header)
         for host in self.hosts:
-            line = '{};{};;;;;;\n'.format(host.address, host.port)
+            if len(host.params) > 0 or len(host.actions) > 0:
+                param_str = ';'.join([str(p) for p in host.params])
+                action_str = ';'.join([str(a) for a in host.actions])
+                line = '{};{};;;;;;{};{}\n'.format(host.address, host.port, param_str, action_str)
+                lines.append(line)
             if len(host.nodes) > 0:
                 for node in host.nodes:
                     for ptopic in node.published_topics:
                         for stopic in node.subscribed_topics:
                             for service in node.services:
-                                line = '{};{};{};{};{};{};{};{}\n'.format(host.address, host.port, node.name, node.address, node.port, ptopic,
+                                line = '{};{};{};{};{};{};{};{};;\n'.format(host.address, host.port, node.name, node.address, node.port, ptopic,
                                                                    stopic, service)
             lines.append(line)
 
