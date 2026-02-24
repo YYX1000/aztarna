@@ -1,0 +1,407 @@
+
+Node: /rosout XMLRPCUri: http://ros2-virtual-machine:39031
+
+	 Published topics:
+		 * /rosout_agg(Type: rosgraph_msgs/Log)
+
+	 Subscribed topics:
+		 * /clock(Type: rosgraph_msgs/Clock)
+		 * /rosout(Type: rosgraph_msgs/Log)
+
+	 Services:
+		 * /rosout/get_loggers
+		 * /rosout/set_logger_level
+
+Node: /robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:36389
+
+	 Published topics:
+		 * /rosout(Type: rosgraph_msgs/Log)
+		 * /tf(Type: tf2_msgs/TFMessage)
+		 * /tf_static(Type: tf2_msgs/TFMessage)
+
+	 Subscribed topics:
+		 * /clock(Type: rosgraph_msgs/Clock)
+		 * /go2_gazebo/joint_states(Type: sensor_msgs/JointState)
+
+	 Services:
+		 * /robot_state_publisher/get_loggers
+		 * /robot_state_publisher/set_logger_level
+
+Node: /go2_gazebo/controller_spawner XMLRPCUri: http://ros2-virtual-machine:38901
+
+	 Published topics:
+		 * /rosout(Type: rosgraph_msgs/Log)
+
+	 Subscribed topics:
+		 * /clock(Type: rosgraph_msgs/Clock)
+
+	 Services:
+		 * /go2_gazebo/controller_spawner/get_loggers
+		 * /go2_gazebo/controller_spawner/set_logger_level
+
+Node: /gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+
+	 Published topics:
+		 * /rosout(Type: rosgraph_msgs/Log)
+		 * /clock(Type: rosgraph_msgs/Clock)
+		 * /gazebo/link_states(Type: gazebo_msgs/LinkStates)
+		 * /gazebo/model_states(Type: gazebo_msgs/ModelStates)
+		 * /gazebo/performance_metrics(Type: gazebo_msgs/PerformanceMetrics)
+		 * /gazebo/parameter_descriptions(Type: dynamic_reconfigure/ConfigDescription)
+		 * /gazebo/parameter_updates(Type: dynamic_reconfigure/Config)
+
+	 Subscribed topics:
+		 * /clock(Type: rosgraph_msgs/Clock)
+		 * /gazebo/set_link_state(Type: gazebo_msgs/LinkState)
+		 * /gazebo/set_model_state(Type: gazebo_msgs/ModelState)
+
+	 Services:
+		 * /gazebo/get_loggers
+		 * /gazebo/set_logger_level
+		 * /gazebo/spawn_sdf_model
+		 * /gazebo/spawn_urdf_model
+		 * /gazebo/delete_model
+		 * /gazebo/delete_light
+		 * /gazebo/get_model_properties
+		 * /gazebo/get_model_state
+		 * /gazebo/get_world_properties
+		 * /gazebo/get_joint_properties
+		 * /gazebo/get_link_properties
+		 * /gazebo/get_link_state
+		 * /gazebo/get_light_properties
+		 * /gazebo/set_light_properties
+		 * /gazebo/get_physics_properties
+		 * /gazebo/set_link_properties
+		 * /gazebo/set_physics_properties
+		 * /gazebo/set_model_state
+		 * /gazebo/set_model_configuration
+		 * /gazebo/set_joint_properties
+		 * /gazebo/set_link_state
+		 * /gazebo/pause_physics
+		 * /gazebo/unpause_physics
+		 * /gazebo/apply_body_wrench
+		 * /gazebo/set_parameters
+		 * /gazebo/apply_joint_effort
+		 * /gazebo/clear_joint_forces
+		 * /gazebo/clear_body_wrenches
+		 * /gazebo/reset_simulation
+		 * /gazebo/reset_world
+
+Node: /gazebo_gui XMLRPCUri: http://ros2-virtual-machine:44507
+
+	 Published topics:
+		 * /rosout(Type: rosgraph_msgs/Log)
+
+	 Subscribed topics:
+		 * /clock(Type: rosgraph_msgs/Clock)
+
+	 Services:
+		 * /gazebo_gui/get_loggers
+		 * /gazebo_gui/set_logger_level
+
+Communications: 
+
+	 Communication 0:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+		 - Topic: /clock(Type: rosgraph_msgs/Clock)
+		 - Subscribers:
+			/rosout XMLRPCUri: http://ros2-virtual-machine:39031
+			/robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:36389
+			/go2_gazebo/controller_spawner XMLRPCUri: http://ros2-virtual-machine:38901
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+			/gazebo_gui XMLRPCUri: http://ros2-virtual-machine:44507
+
+	 Communication 1:
+		 - Publishers:
+			/rosout XMLRPCUri: http://ros2-virtual-machine:39031
+		 - Topic: /rosout_agg(Type: rosgraph_msgs/Log)
+		 - Subscribers:
+
+	 Communication 2:
+		 - Publishers:
+			/robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:36389
+			/go2_gazebo/controller_spawner XMLRPCUri: http://ros2-virtual-machine:38901
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+			/gazebo_gui XMLRPCUri: http://ros2-virtual-machine:44507
+		 - Topic: /rosout(Type: rosgraph_msgs/Log)
+		 - Subscribers:
+			/rosout XMLRPCUri: http://ros2-virtual-machine:39031
+
+	 Communication 3:
+		 - Publishers:
+			/robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:36389
+		 - Topic: /tf(Type: tf2_msgs/TFMessage)
+		 - Subscribers:
+
+	 Communication 4:
+		 - Publishers:
+			/robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:36389
+		 - Topic: /tf_static(Type: tf2_msgs/TFMessage)
+		 - Subscribers:
+
+	 Communication 5:
+		 - Publishers:
+		 - Topic: /go2_gazebo/joint_states(Type: sensor_msgs/JointState)
+		 - Subscribers:
+			/robot_state_publisher XMLRPCUri: http://ros2-virtual-machine:36389
+
+	 Communication 6:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+		 - Topic: /gazebo/link_states(Type: gazebo_msgs/LinkStates)
+		 - Subscribers:
+
+	 Communication 7:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+		 - Topic: /gazebo/model_states(Type: gazebo_msgs/ModelStates)
+		 - Subscribers:
+
+	 Communication 8:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+		 - Topic: /gazebo/performance_metrics(Type: gazebo_msgs/PerformanceMetrics)
+		 - Subscribers:
+
+	 Communication 9:
+		 - Publishers:
+		 - Topic: /gazebo/set_link_state(Type: gazebo_msgs/LinkState)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+
+	 Communication 10:
+		 - Publishers:
+		 - Topic: /gazebo/set_model_state(Type: gazebo_msgs/ModelState)
+		 - Subscribers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+
+	 Communication 11:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+		 - Topic: /gazebo/parameter_descriptions(Type: dynamic_reconfigure/ConfigDescription)
+		 - Subscribers:
+
+	 Communication 12:
+		 - Publishers:
+			/gazebo XMLRPCUri: http://ros2-virtual-machine:40945
+		 - Topic: /gazebo/parameter_updates(Type: dynamic_reconfigure/Config)
+		 - Subscribers:
+
+	 Communication 13:
+		 - Publishers:
+		 - Topic: /trunk_imu(Type: sensor_msgs/Imu)
+		 - Subscribers:
+
+	 Communication 14:
+		 - Publishers:
+		 - Topic: /rslidar_points(Type: sensor_msgs/PointCloud2)
+		 - Subscribers:
+
+	 Communication 15:
+		 - Publishers:
+		 - Topic: /visual/FL_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 16:
+		 - Publishers:
+		 - Topic: /visual/FR_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 17:
+		 - Publishers:
+		 - Topic: /visual/RL_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 18:
+		 - Publishers:
+		 - Topic: /visual/RR_foot_contact/the_force(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 19:
+		 - Publishers:
+		 - Topic: /apply_force/trunk(Type: geometry_msgs/Wrench)
+		 - Subscribers:
+
+	 Communication 20:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 21:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 22:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 23:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 24:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 25:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 26:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 27:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 28:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FL_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 29:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 30:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 31:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 32:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 33:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 34:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 35:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 36:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 37:
+		 - Publishers:
+		 - Topic: /go2_gazebo/FR_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 38:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 39:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 40:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 41:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 42:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 43:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 44:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 45:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 46:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RL_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 47:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_hip_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 48:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_hip_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 49:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_hip_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 50:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_thigh_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 51:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_thigh_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 52:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_thigh_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+	 Communication 53:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_calf_controller/joint_wrench(Type: geometry_msgs/WrenchStamped)
+		 - Subscribers:
+
+	 Communication 54:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_calf_controller/command(Type: unitree_legged_msgs/MotorCmd)
+		 - Subscribers:
+
+	 Communication 55:
+		 - Publishers:
+		 - Topic: /go2_gazebo/RR_calf_controller/state(Type: unitree_legged_msgs/MotorState)
+		 - Subscribers:
+
+
+

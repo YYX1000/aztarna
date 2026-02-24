@@ -1,8 +1,8 @@
 import os
 from collections import namedtuple
 import pyshark
-import threading
 import time
+import multiprocessing
 from typing import List
 
 try:
@@ -38,9 +38,24 @@ except ModuleNotFoundError:
     # generally when ROS 2 is missing
     print('ROS2 needs to be installed and sourced to run ROS2 scans')
 
+# Optional: rclpy exception type is not guaranteed across ROS 2 versions.
+try:
+    from rclpy._rclpy_pybind11 import NodeNameNonExistentError
+except Exception:
+    class NodeNameNonExistentError(Exception):
+        pass
+
+# Optional: ros2param API for parameter scanning.
+try:
+    from ros2param.api import call_list_parameters, call_get_parameters, call_describe_parameters
+    from ros2param.api import get_parameter_type_string, get_value
+    HAS_ROS2PARAM = True
+except Exception:
+    HAS_ROS2PARAM = False
+
 from aztarna.commons import RobotAdapter
-from aztarna.ros.ros2.helpers import ROS2Node, ROS2Host, ROS2Topic, ROS2Service, raw_topics_to_pyobj_list, \
-    raw_services_to_pyobj_list
+from aztarna.ros.ros2.helpers import ROS2Node, ROS2Host, ROS2Topic, ROS2Service, ROS2Parameter, \
+    raw_topics_to_pyobj_list, raw_services_to_pyobj_list
 
 # Max value of ROS_DOMAIN_ID
 #   See https://github.com/eProsima/Fast-RTPS/issues/223
@@ -188,14 +203,26 @@ class ROS2Scanner(RobotAdapter):
             # 直接连接到目标节点获取详细信息
             with DirectNode(nodo) as node:
                 if str(nodo) != '/_ros2cli_daemon_0':
-                    output_node[nodo] = {
-                                          'domain': domain_id,
-                                          'subscribers': get_subscriber_info(node=node, remote_node_name=nodo),
-                                          'publishers': get_publisher_info(node=node, remote_node_name=nodo),
-                                          'services': get_service_info(node=node, remote_node_name=nodo),
-                                          'actionservers': get_action_server_info(node=node, remote_node_name=nodo),
-                                          'actionclient': get_action_client_info(node=node, remote_node_name=nodo)
-                                        }
+                    try:
+                        params = []
+                        if self.extended:
+                            params = self._fetch_parameters(node, str(nodo))
+                        output_node[nodo] = {
+                                              'domain': domain_id,
+                                              'subscribers': get_subscriber_info(node=node, remote_node_name=nodo),
+                                              'publishers': get_publisher_info(node=node, remote_node_name=nodo),
+                                              'services': get_service_info(node=node, remote_node_name=nodo),
+                                              'actionservers': get_action_server_info(node=node, remote_node_name=nodo),
+                                              'actionclient': get_action_client_info(node=node, remote_node_name=nodo),
+                                              'parameters': params
+                                            }
+                    except NodeNameNonExistentError:
+                        # Node vanished between discovery and inspection; skip it.
+                        continue
+                    except Exception as e:
+                        # Keep daemon scan resilient to transient graph errors.
+                        print(f'\t[!] Failed to query node {nodo}: {e}')
+                        continue
         self.processed_nodes.append(output_node)
 
     def ros2topic(self, domain_id):
@@ -281,10 +308,13 @@ class ROS2Scanner(RobotAdapter):
                 host.services = self.scan_ros2_services(scanner_node)
                 # extended 模式下按节点补全详细 topic/service 信息
                 if self.extended:
-                    for node in found_nodes:
+                    # If node discovery is incomplete, add nodes inferred from parameter services.
+                    self._add_nodes_from_parameter_services(host)
+                    for node in host.nodes:
                         try:
                             self.get_node_topics(scanner_node, node)
                             self.get_node_services(scanner_node, node)
+                            self.get_node_parameters(scanner_node, node)
                         except Exception as e:
                             print(f'\t[!] Failed to query node {node.name}: {e}')
                 self.found_hosts.append(host)
@@ -297,6 +327,44 @@ class ROS2Scanner(RobotAdapter):
 
     def scan_pipe_main(self):
         raise NotImplementedError
+
+    def _add_nodes_from_parameter_services(self, host: ROS2Host):
+        """
+        Fallback: infer nodes from parameter service names when node discovery is incomplete.
+
+        This helps when get_node_names_and_namespaces() misses nodes but parameter
+        services are visible (e.g., /<node>/list_parameters).
+        """
+        if not host.services:
+            return
+        suffixes = (
+            '/list_parameters',
+            '/get_parameters',
+            '/describe_parameters',
+            '/get_parameter_types',
+            '/set_parameters',
+            '/set_parameters_atomically',
+        )
+        existing = {(n.name, n.namespace) for n in host.nodes}
+        for svc in host.services:
+            svc_name = svc.name
+            for suffix in suffixes:
+                if svc_name.endswith(suffix):
+                    node_full = svc_name[:-len(suffix)]
+                    if not node_full:
+                        break
+                    node_info = parse_node_name(node_full)
+                    if not self.hidden and '_ros2cli' in node_info.full_name:
+                        break
+                    key = (node_info.name, node_info.namespace)
+                    if key in existing:
+                        break
+                    node = ROS2Node()
+                    node.name = node_info.name
+                    node.namespace = node_info.namespace
+                    host.nodes.append(node)
+                    existing.add(key)
+                    break
 
     @staticmethod
     def print_node_topics(node: ROS2Node):
@@ -323,6 +391,17 @@ class ROS2Scanner(RobotAdapter):
         for service in node.services:
             print(f'\t\t\tService Name: {service.name} \t|\t Service Type: {service.service_type}')
 
+    @staticmethod
+    def print_node_parameters(node: ROS2Node):
+        """
+        Helper function for printing node related parameters.
+
+        :param node: :class:`aztarna.ros.ros2.helpers.ROS2Node` containing the parameters.
+        """
+        print(f'\t\tParameters:')
+        for param in node.parameters:
+            print(f'\t\t\tParam Name: {param.name} \t|\t Type: {param.param_type} \t|\t Value: {param.value}')
+
     def write_to_file(self, out_file: str):
         """
         Write scanner results to the specified output file.
@@ -339,6 +418,7 @@ class ROS2Scanner(RobotAdapter):
                     for node in host.nodes:
                         self.write_node_topics(host, lines, node)
                         self.write_node_services(host, lines, node)
+                        self.write_node_parameters(host, lines, node)
                 else:
                     for topic in host.topics:
                         line = f'{host.domain_id};;;Topic;{topic.name};{topic.topic_type};;\n'
@@ -381,6 +461,20 @@ class ROS2Scanner(RobotAdapter):
         for service in node.services:
             line = f'{host.domain_id};{node.name};{node.namespace};Service;{service.name};' \
                 f'{service.service_type};\n'
+            lines.append(line)
+
+    @staticmethod
+    def write_node_parameters(host: ROS2Host, lines: List[str], node: ROS2Node):
+        """
+        Helper function to generate the node related parameter information lines for writing in file.
+
+        :param host: :class:`aztarna.ros.ros2.helpers.ROS2Host` class object.
+        :param lines: list containing the lines to write on the file.
+        :param node: :class:`aztarna,.ros.ros2.helpers.ROS2Node` class object containing the information to write.
+        """
+        for param in node.parameters:
+            line = f'{host.domain_id};{node.name};{node.namespace};Parameter;{param.name};' \
+                f'{param.param_type};{param.value}\n'
             lines.append(line)
 
     def scan_ros2_nodes(self, scanner_node) -> List[ROS2Node]:
@@ -451,6 +545,79 @@ class ROS2Scanner(RobotAdapter):
         services = scanner_node.get_service_names_and_types_by_node(node.name, node.namespace)
         node.services = raw_services_to_pyobj_list(services)
 
+    @staticmethod
+    def get_node_parameters(scanner_node, node: ROS2Node):
+        """
+        Get parameters for a certain node, including type and current value.
+
+        :param scanner_node: Scanner node object to be used for retrieving the node information.
+        :param node: Target :class:`aztarna.ros.ros2.helpers.ROS2Node`
+        """
+        if not HAS_ROS2PARAM:
+            return
+        if node.namespace in ['', '/']:
+            full_name = f'/{node.name}'
+        else:
+            full_name = f'{node.namespace.rstrip("/")}/{node.name}'
+        node.parameters = ROS2Scanner._fetch_parameters(scanner_node, full_name)
+
+    @staticmethod
+    def _fetch_parameters(scanner_node, remote_node_name: str) -> List[ROS2Parameter]:
+        """
+        Fetch parameters from a remote node using ros2param API.
+
+        :param scanner_node: Local node used for parameter client calls.
+        :param remote_node_name: Fully-qualified remote node name.
+        :return: List of ROS2Parameter objects.
+        """
+        if not HAS_ROS2PARAM:
+            return []
+        try:
+            future = call_list_parameters(node=scanner_node, node_name=remote_node_name)
+        except Exception:
+            return []
+        if future is None:
+            return []
+        result = future.result()
+        if result is None:
+            return []
+        param_names = result.result.names
+        if not param_names:
+            return []
+        try:
+            desc = call_describe_parameters(
+                node=scanner_node,
+                node_name=remote_node_name,
+                parameter_names=param_names
+            )
+        except Exception:
+            desc = None
+        try:
+            values = call_get_parameters(
+                node=scanner_node,
+                node_name=remote_node_name,
+                parameter_names=param_names
+            )
+        except Exception:
+            values = None
+
+        parameters = []
+        for i, name in enumerate(param_names):
+            param = ROS2Parameter()
+            param.name = name
+            if desc and i < len(desc.descriptors):
+                try:
+                    param.param_type = get_parameter_type_string(desc.descriptors[i].type)
+                except Exception:
+                    param.param_type = str(desc.descriptors[i].type)
+            if values and i < len(values.values):
+                try:
+                    param.value = get_value(parameter_value=values.values[i])
+                except Exception:
+                    param.value = None
+            parameters.append(param)
+        return parameters
+
     def scan_passive(self, interface: str):
         # 被动抓包（RTPS）
         for pkg in pyshark.LiveCapture(interface=interface, display_filter='rtps'):
@@ -480,6 +647,8 @@ class ROS2Scanner(RobotAdapter):
                         print(f'\t\tNode Name: {node.name} \t|\t Namespace: {node.namespace}')
                         if self.extended:
                             self.print_node_topics(node)
+                            self.print_node_services(node)
+                            self.print_node_parameters(node)
                     print('-' * 80)
 
     def print_results_daemon(self):
@@ -534,21 +703,34 @@ class ROS2Scanner(RobotAdapter):
             print("Exploring ROS_DOMAIN_ID from: " + str(domain_id_range_init) + str(" to ") + str(domain_id_range_end))
 
         print('Scanning the network...')
-        threads = []
-        for i in domain_id_range:
-            if self.use_daemon:
-                # This approach does the following:
-                #   1. calls ros2cli ros2node and populates abstractions from helper2,
-                #       dumping them into self.processed_nodes as it applies
-                #   2. calls ros2cli ros2topic and populates
-                #   3. calls ros2cli ros2service and populates
-
-                # NOTE: scanning all the domains can take several minutes
-                t = threading.Thread(target=self.ros2cli_api, args=(i,))
-                threads.append(t)
-                t.start()
-                # self.print_results_daemon()
+        domain_ids = list(domain_id_range)
+        if self.use_daemon:
+            # This approach does the following:
+            #   1. calls ros2cli ros2node and populates abstractions from helper2,
+            #       dumping them into self.processed_nodes as it applies
+            #   2. calls ros2cli ros2topic and populates
+            #   3. calls ros2cli ros2service and populates
+            #
+            # NOTE: ros2cli uses rclpy.init() internally (DirectNode/NodeStrategy).
+            # rclpy context is not thread-safe with threads, and ROS_DOMAIN_ID
+            # is process-global. Use multiprocessing to preserve concurrency.
+            if len(domain_ids) <= 1:
+                self.ros2cli_api(domain_ids[0])
             else:
+                max_workers = min(
+                    max(1, os.cpu_count() or 1),
+                    max(1, self.rate),
+                    len(domain_ids)
+                )
+                ctx = multiprocessing.get_context('spawn')
+                with ctx.Pool(processes=max_workers) as pool:
+                    args = [(domain_id, self.hidden, self.extended) for domain_id in domain_ids]
+                    for nodes, topics, services in pool.imap_unordered(_ros2cli_api_worker, args):
+                        self.processed_nodes.extend(nodes)
+                        self.processed_topics.extend(topics)
+                        self.processed_services.extend(services)
+        else:
+            for i in domain_ids:
                 # This approach does the following:
                 #   1. calls rclpy scan_ros2_nodes and populates abstractons from helper
                 #   2. calls rclpy scan_ros2_topics and populates
@@ -558,7 +740,19 @@ class ROS2Scanner(RobotAdapter):
                 # rclpy init/shutdown is not safe to run in parallel; keep sequential
                 self.on_thread(i)
 
-        for t in threads:
-            t.join()
-
         return self.found_hosts
+
+
+def _ros2cli_api_worker(args):
+    """
+    Multiprocessing worker for daemon scans.
+
+    Each process gets its own ROS_DOMAIN_ID and rclpy context, avoiding the
+    global rclpy init/shutdown conflicts seen with threads.
+    """
+    domain_id, hidden, extended = args
+    scanner = ROS2Scanner()
+    scanner.hidden = hidden
+    scanner.extended = extended
+    scanner.ros2cli_api(domain_id)
+    return scanner.processed_nodes, scanner.processed_topics, scanner.processed_services

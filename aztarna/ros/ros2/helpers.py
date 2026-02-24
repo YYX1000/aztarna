@@ -12,6 +12,7 @@ class ROS2Node:
         self.subscribed_topics = []
         self.published_topics = []
         self.services = []
+        self.parameters = []
 
 
 class ROS2Topic:
@@ -36,6 +37,17 @@ class ROS2Service:
     def __init__(self):
         self.name = ''
         self.service_type = ''
+
+
+class ROS2Parameter:
+
+    def __init__(self):
+        self.name = ''
+        self.param_type = ''
+        self.value = None
+
+    def __repr__(self):
+        return f'Parameter(name={self.name}, type={self.param_type}, value={self.value})'
 
 
 def raw_topics_to_pyobj_list(topics, include_default=False) -> List[ROS2Topic]:
