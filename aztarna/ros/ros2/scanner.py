@@ -6,6 +6,7 @@ import time
 from typing import List
 
 try:
+    # ROS 2 CLI 与 rclpy 相关 API（新版接口）
     from ros2cli.node.strategy import add_arguments, NodeStrategy
     from ros2node.api import get_node_names, get_publisher_info, NodeNameCompleter
     from ros2node.verb import VerbExtension
@@ -21,6 +22,7 @@ except ImportError:
     #   it can't find get_service_info anymore due to API changes. See
     #   https://github.com/ros2/ros2cli/commit/e020486c82cdee1c8d622f5c88fe564ef1b564e7#diff-4602044fc49daf9e20cd8c4ff8d27923
     #   which essentially removes the get_service_info primitive
+    # ROS 2 Eloquent 及之后的兼容导入（API 变化）
     from ros2cli.node.strategy import add_arguments, NodeStrategy
     from ros2node.api import get_node_names, get_publisher_info, NodeNameCompleter
     from ros2node.verb import VerbExtension
@@ -43,6 +45,7 @@ from aztarna.ros.ros2.helpers import ROS2Node, ROS2Host, ROS2Topic, ROS2Service,
 # Max value of ROS_DOMAIN_ID
 #   See https://github.com/eProsima/Fast-RTPS/issues/223
 #   See https://answers.ros.org/question/318386/ros2-max-domain-id/
+# ROS_DOMAIN_ID 最大值（扫描范围上限）
 max_ros_domain_id = 231
 rmw_implementations = [
         'rmw_opensplice_cpp',
@@ -51,6 +54,7 @@ rmw_implementations = [
         'rmw_cyclonedds_cpp'
         ]
 
+# ROS 2 默认系统话题（扫描时可过滤）
 default_topics = ['/rosout', '/parameter_events']
 NodeName = namedtuple('NodeName', ('name', 'namespace', 'full_name'))
 TopicInfo = namedtuple('Topic', ('name', 'types'))
@@ -61,6 +65,7 @@ ServiceInfo = namedtuple('Service', ('name', 'types'))
 
 
 def parse_node_name(node_name):
+    # 解析节点名为：name / namespace / full_name
     full_node_name = node_name
     if not full_node_name.startswith('/'):
         full_node_name = '/' + full_node_name
@@ -71,6 +76,7 @@ def parse_node_name(node_name):
 
 
 def get_action_server_info(*, node, remote_node_name):
+    # 获取目标节点的 action server 列表
     remote_node = parse_node_name(remote_node_name)
     names_and_types = get_action_server_names_and_types_by_node(
         node, remote_node.name, remote_node.namespace)
@@ -82,6 +88,7 @@ def get_action_server_info(*, node, remote_node_name):
 
 
 def get_action_client_info(*, node, remote_node_name):
+    # 获取目标节点的 action client 列表
     remote_node = parse_node_name(remote_node_name)
     names_and_types = get_action_client_names_and_types_by_node(
         node, remote_node.name, remote_node.namespace)
@@ -95,6 +102,7 @@ def get_action_client_info(*, node, remote_node_name):
 class ROS2Scanner(RobotAdapter):
 
     def __init__(self):
+        # 初始化扫描器内部状态
         super().__init__()
         self.found_hosts = []
         self.scanner_node_name = 'aztarna'
@@ -124,12 +132,14 @@ class ROS2Scanner(RobotAdapter):
         #       },
         #       ...
         #     ]
+        # daemon 模式的数据容器
         self.processed_nodes = []
         self.processed_topics = []
         self.processed_services = []
 
     @staticmethod
     def get_available_rmw_implementations():
+        # 检测当前系统可用的 RMW 中间件实现
         try:
             from ros2pkg.api import get_package_names
         except ImportError or ModuleNotFoundError:
@@ -146,6 +156,7 @@ class ROS2Scanner(RobotAdapter):
         Invokes the different methods of the ros2cli API to fetch abstractions
         from the ROS 2 graph and populates self.processed_nodes
         """
+        # daemon 模式总入口：node/topic/service 一次性采集
         self.ros2node(domain_id)
         self.ros2topic(domain_id)
         self.ros2service(domain_id)
@@ -154,6 +165,7 @@ class ROS2Scanner(RobotAdapter):
         """
         'ros2 node list' fetched from ros2cli and more
         """
+        # 采集节点及其订阅/发布/服务/action 信息
         print("Exploring ROS_DOMAIN_ID: " + str(domain_id) + ' for nodes')
         os.environ['ROS_DOMAIN_ID'] = str(domain_id)
 
@@ -173,6 +185,7 @@ class ROS2Scanner(RobotAdapter):
             #output_node = {"name": nodo, "domain": domain_id}
             #output_node["namespace"] = output_node["name"][:(output_node["name"].rfind("/") + 1)] # fetch the substring until the last "/"
 
+            # 直接连接到目标节点获取详细信息
             with DirectNode(nodo) as node:
                 if str(nodo) != '/_ros2cli_daemon_0':
                     output_node[nodo] = {
@@ -187,6 +200,7 @@ class ROS2Scanner(RobotAdapter):
 
     def ros2topic(self, domain_id):
 
+        # 采集话题及类型、发布者/订阅者数量
         print("Exploring ROS_DOMAIN_ID: " + str(domain_id) + ' for topics')
         os.environ['ROS_DOMAIN_ID'] = str(domain_id)
 
@@ -207,6 +221,7 @@ class ROS2Scanner(RobotAdapter):
             self.processed_topics.append(output_topic)
 
     def ros2service(self, domain_id):
+        # 采集服务及类型
         print('Exploring ROS_DOMAIN_ID: ' + str(domain_id) + ' for services')
         os.environ['ROS_DOMAIN_ID'] = str(domain_id)
 
@@ -228,6 +243,7 @@ class ROS2Scanner(RobotAdapter):
 
         TODO: @LanderU creates a single host, this is wrong, should be reviewed.
         """
+        # rclpy 方式的扫描入口（非 daemon）
         try:
             import rclpy
             from rclpy.context import Context
@@ -243,16 +259,19 @@ class ROS2Scanner(RobotAdapter):
         # Implementation based on rclpy has some issues have been detected
         # when reproduced both in Linux and OS X. Essentially, calls to fetch nodes
         # topics and services deliver incomplete information.
+        # 初始化 rclpy 并创建扫描节点
         rclpy.init()
         scanner_node = None
         try:
             scanner_node = rclpy.create_node(self.scanner_node_name)
 
             # Give DDS discovery a moment to populate the graph
+            # 留时间给 DDS 发现完成
             for _ in range(3):
                 rclpy.spin_once(scanner_node, timeout_sec=0.2)
                 time.sleep(0.05)
 
+            # 扫描节点/话题/服务并组装 Host
             found_nodes = self.scan_ros2_nodes(scanner_node)
             if found_nodes:
                 host = ROS2Host()
@@ -260,6 +279,7 @@ class ROS2Scanner(RobotAdapter):
                 host.nodes = found_nodes
                 host.topics = self.scan_ros2_topics(scanner_node)
                 host.services = self.scan_ros2_services(scanner_node)
+                # extended 模式下按节点补全详细 topic/service 信息
                 if self.extended:
                     for node in found_nodes:
                         try:
@@ -270,6 +290,7 @@ class ROS2Scanner(RobotAdapter):
                 self.found_hosts.append(host)
         finally:
             try:
+                # 确保释放 rclpy 资源
                 rclpy.shutdown()
             except Exception:
                 pass
@@ -308,6 +329,7 @@ class ROS2Scanner(RobotAdapter):
 
         :param out_file: Output file to write the results on.
         """
+        # 以分号分隔写入结果文件
         lines = []
         header = 'DomainID;NodeName;Namespace;Type;ElementName;ElementType;Direction\n'
         lines.append(header)
@@ -335,10 +357,12 @@ class ROS2Scanner(RobotAdapter):
         :param lines: list containing the lines to write on the file.
         :param node: :class:`aztarna,.ros.ros2.helpers.ROS2Node` class object containing the information to write.
         """
+        # 发布话题
         for published_topic in node.published_topics:
             line = f'{host.domain_id};{node.name};{node.namespace};{published_topic.name};' \
                 f'{published_topic.topic_type};Publish\n'
             lines.append(line)
+        # 订阅话题
         for subscribed_topic in node.subscribed_topics:
             line = f'{host.domain_id};{node.name};{node.namespace};{subscribed_topic.name};' \
                 f'{subscribed_topic.topic_type};Subscribe\n'
@@ -353,6 +377,7 @@ class ROS2Scanner(RobotAdapter):
         :param lines: list containing the lines to write on the file.
         :param node: :class:`aztarna,.ros.ros2.helpers.ROS2Node` class object containing the information to write.
         """
+        # 服务信息
         for service in node.services:
             line = f'{host.domain_id};{node.name};{node.namespace};Service;{service.name};' \
                 f'{service.service_type};\n'
@@ -365,6 +390,7 @@ class ROS2Scanner(RobotAdapter):
         :param scanner_node: Scanner node object to be used for retrieving the node information.
         :return: A list containing the found nodes.
         """
+        # 获取节点列表并过滤自身
         nodes = scanner_node.get_node_names_and_namespaces()
         found_nodes = []
         for node_name, namespace in nodes:
@@ -383,6 +409,7 @@ class ROS2Scanner(RobotAdapter):
         :param scanner_node: Scanner node object to be used for retrieving the node information.
         :return: List containing the found topics.
         """
+        # 读取话题列表并转换为对象
         topics = scanner_node.get_topic_names_and_types()
         return raw_topics_to_pyobj_list(topics)
 
@@ -394,6 +421,7 @@ class ROS2Scanner(RobotAdapter):
         :param scanner_node:
         :return: List of :class:`aztarna.ros.ros2.helpers.ROS2Service`
         """
+        # 读取服务列表并转换为对象
         services = scanner_node.get_service_names_and_types()
         return raw_services_to_pyobj_list(services)
 
@@ -405,6 +433,7 @@ class ROS2Scanner(RobotAdapter):
         :param scanner_node: Scanner node object to be used for retrieving the node information.
         :param node: Target :class:`aztarna.ros.ros2.helpers.ROS2Node`
         """
+        # 分别获取该节点发布/订阅的话题
         published_topics = scanner_node.get_publisher_names_and_types_by_node(node.name, node.namespace)
         subscribed_topics = scanner_node.get_subscriber_names_and_types_by_node(node.name, node.namespace)
         node.published_topics = raw_topics_to_pyobj_list(published_topics)
@@ -418,10 +447,12 @@ class ROS2Scanner(RobotAdapter):
         :param scanner_node: Scanner node object to be used for retrieving the node information.
         :param node: Target :class:`aztarna.ros.ros2.helpers.ROS2Node`
         """
+        # 获取该节点提供的服务
         services = scanner_node.get_service_names_and_types_by_node(node.name, node.namespace)
         node.services = raw_services_to_pyobj_list(services)
 
     def scan_passive(self, interface: str):
+        # 被动抓包（RTPS）
         for pkg in pyshark.LiveCapture(interface=interface, display_filter='rtps'):
             print(pkg)
 
@@ -429,6 +460,7 @@ class ROS2Scanner(RobotAdapter):
         """
         Print scanner results on stdout.
         """
+        # 根据扫描模式选择输出方式
         if self.use_daemon:
             self.print_results_daemon()
         else:
@@ -454,6 +486,7 @@ class ROS2Scanner(RobotAdapter):
         """
         Helper method to print information fetched using rclpy ros2cli daemon
         """
+        # 输出 daemon 模式的节点/话题/服务信息
         print('Nodes: ')
         for node in self.processed_nodes:
             for node_key, node_values in node.items():
@@ -483,6 +516,7 @@ class ROS2Scanner(RobotAdapter):
 
         :return: A list containing the ROS2 abstractions found.
         """
+        # 默认扫描所有 ROS_DOMAIN_ID
         domain_id_range_init = 0
         domain_id_range_end = max_ros_domain_id
         domain_id_range = range(domain_id_range_init, domain_id_range_end)
@@ -493,6 +527,7 @@ class ROS2Scanner(RobotAdapter):
             #     available ones. Capture errors and process them as well.
             self.scan_passive("any")
 
+        # 指定 domain 时仅扫描该 domain
         if self.domain is not None:
             domain_id_range = [self.domain]
         else:
